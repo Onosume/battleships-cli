@@ -145,6 +145,7 @@
     <ClCompile Include="battleship.cpp" />
     <ClCompile Include="gameBoard.cpp" />
     <ClCompile Include="gameProcessor.cpp" />
+    <ClCompile Include="invalidInputException.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="battleship.h" />
     <ClInclude Include="gameBoard.h" />
     <ClInclude Include="gameProcessor.h" />
+    <ClInclude Include="invalidInputException.h" />
     <ClInclude Include="player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

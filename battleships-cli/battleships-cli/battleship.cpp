@@ -12,6 +12,9 @@ Battleship::Battleship()
 	health = 1;
 }
 
+Battleship::~Battleship()
+{}
+
 //Construct a battleship with a position
 Battleship::Battleship(list<string> position)
 {

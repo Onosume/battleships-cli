@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Game Processor">
       <UniqueIdentifier>{da713410-5f78-4fa5-9947-3a55505ebb4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Exceptions">
+      <UniqueIdentifier>{ea903dad-a9bc-42fd-8d09-1dff4d913fa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exceptions">
+      <UniqueIdentifier>{873331ef-a14b-436d-b848-1da607cfefbb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,6 +48,9 @@
     <ClCompile Include="gameBoard.cpp">
       <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
+    <ClCompile Include="invalidInputException.cpp">
+      <Filter>Source Files\Exceptions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battleship.h">
@@ -55,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="gameBoard.h">
       <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="invalidInputException.h">
+      <Filter>Header Files\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

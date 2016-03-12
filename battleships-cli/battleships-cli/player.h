@@ -13,4 +13,5 @@ private:
 public:
 	Player(int cannonballs);
 	void Init(int cannonballs);
+	int CannonballCount();
 };

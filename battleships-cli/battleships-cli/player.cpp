@@ -15,3 +15,8 @@ void Player::Init(int cannonballs)
 	score = 0;
 	this->cannonballs = cannonballs;
 }
+
+int Player::CannonballCount()
+{
+	return cannonballs;
+}
