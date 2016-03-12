@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Game Objects">
       <UniqueIdentifier>{85a5d44d-7ee2-41d8-8882-70abac6ad83c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game Processor">
+      <UniqueIdentifier>{df520e0d-24cb-4400-a3da-daa355ceae9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Processor">
+      <UniqueIdentifier>{da713410-5f78-4fa5-9947-3a55505ebb4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -30,12 +36,24 @@
     <ClCompile Include="player.cpp">
       <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
+    <ClCompile Include="gameProcessor.cpp">
+      <Filter>Source Files\Game Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="gameBoard.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battleship.h">
       <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="player.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="gameProcessor.h">
+      <Filter>Header Files\Game Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="gameBoard.h">
       <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
   </ItemGroup>
