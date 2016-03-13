@@ -15,7 +15,7 @@ void main()
 	gameProcessor->WriteIntro();
 
 	// Game Loop
-	while (!gameProcessor->AllShipsSunk())
+	while (!gameProcessor->GameOver())
 	{
 		gameProcessor->DisplayCurrentGame();
 

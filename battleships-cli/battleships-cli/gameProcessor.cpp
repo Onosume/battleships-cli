@@ -27,6 +27,7 @@ GameProcessor::~GameProcessor()
 
 void GameProcessor::CreateGame()
 {
+	gameOver = false;
 	CreatePlayer();
 	CreateBattleships();
 }
@@ -225,7 +226,7 @@ bool GameProcessor::Shoot()
 
 		if (coordinateInput[1] == '1' && coordinateInput[2] == '0')
 		{
-			positionIndexY = 10;
+			positionIndexY = 9;
 		}
 		else
 		{
@@ -293,6 +294,12 @@ bool GameProcessor::Shoot()
 		cout << "\nIt's a miss!\n";
 	}
 
+	if (player->CannonballCount() == 0)
+	{
+		cout << "\nYou ran out of cannonballs!\n";
+		gameOver = true;
+	}
+
 	return true;
 }
 
@@ -350,8 +357,15 @@ bool GameProcessor::AllShipsSunk()
 {
 	if (battleships[0].Sunk() && battleships[1].Sunk() && battleships[2].Sunk())
 	{
+		cout << "\nYou sunk all of the ships!\n";
+		gameOver = true;
 		return true;
 	}
 		
 	return false;
+}
+
+bool GameProcessor::GameOver()
+{
+	return gameOver;
 }

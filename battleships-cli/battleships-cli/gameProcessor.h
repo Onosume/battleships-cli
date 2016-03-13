@@ -21,6 +21,7 @@ private:
 	GameBoard gameBoard;
 	Battleship* battleships;
 	char coordinateInput[3];
+	bool gameOver;
 public:
 	GameProcessor();
 	~GameProcessor();
@@ -38,5 +39,5 @@ public:
 	bool Shoot(); // Takes a shot, updates game board, player etc
 	int ConvertCharacterToIndex(char character);
 	bool AllShipsSunk();
-
+	bool GameOver();
 };
