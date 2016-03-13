@@ -36,7 +36,7 @@ public:
 	void DisplayCurrentGame(); // Displays game board, player score, num canonballs
 	void TakePlayerInput(); // Prompts the player for input and sticks it in a char array
 	bool Shoot(); // Takes a shot, updates game board, player etc
-
 	int ConvertCharacterToIndex(char character);
+	bool AllShipsSunk();
 
 };

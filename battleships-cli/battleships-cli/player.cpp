@@ -20,3 +20,18 @@ int Player::CannonballCount()
 {
 	return cannonballs;
 }
+
+void Player::TakeShot()
+{
+	cannonballs--;
+}
+
+void Player::AddToScore(int points)
+{
+	score += points;
+}
+
+int Player::Score()
+{
+	return score;
+}

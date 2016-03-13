@@ -7,6 +7,8 @@
 
 const int BOARD_WIDTH = 10;
 const int BOARD_HEIGHT = 10;
+const char HIT_MARKER = 'H';
+const char MISS_MARKER = 'M';
 
 class GameBoard
 {

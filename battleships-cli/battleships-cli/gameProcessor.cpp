@@ -7,6 +7,12 @@
 #include "invalidInputException.h"
 #include <ctime>
 #include <iostream>
+#include <string>
+#include <list>
+
+using namespace std;
+
+const int NUM_BATTLESHIPS = 3;
 
 GameProcessor::GameProcessor()
 {
@@ -31,7 +37,7 @@ void GameProcessor::CreatePlayer()
 
 void GameProcessor::CreateBattleships()
 {
-	battleships = new Battleship[3];
+	battleships = new Battleship[NUM_BATTLESHIPS];
 
 	battleships[0].Init(GeneratePosition(5));
 	battleships[1].Init(GeneratePosition(4));
@@ -123,6 +129,9 @@ bool GameProcessor::Shoot()
 {
 	bool validAction = true;
 
+	// Update the player's cannonball count
+	player->TakeShot();
+
 	// Parse the input characters
 	int positionIndexX, positionIndexY;
 
@@ -151,14 +160,54 @@ bool GameProcessor::Shoot()
 	}
 
 	// If the characters are valid, check the position markers of the ships
+	string hitPosition(coordinateInput);
+	bool hit = false;
 
-	// If one matches it is a hit
+	// For each battleship
+	for (int i = 0; i < NUM_BATTLESHIPS; i++)
+	{
+		string checkPosition;
+		
+		list<string> positionList = battleships[i].Position();
+
+		// Iterate over the positions
+		list<string>::iterator it;
+		it = positionList.begin();
+		int index = 0;
+
+		while (it != positionList.end())
+		{
+			// If a position matches it's a hit
+			if (*it == hitPosition)
+			{
+				// If one matches it is a hit
+				hit = true;
+
+				// Update the player's score
+				player->AddToScore(10);
+
+				if (!battleships[i].Sunk())
+				{
+					battleships[i].TakeDamageOn(index);
+				}
+			}
+
+			it++;
+			index++;
+		}
+	}
 
 	// Update the game board
-
-	// Update the player's score
-
-	// Update the player's cannonball count
+	if (hit)
+	{
+		gameBoard.SetCell(positionIndexX, positionIndexY, HIT_MARKER);
+		cout << "\nIt's a hit!\n";
+	}
+	else
+	{
+		gameBoard.SetCell(positionIndexX, positionIndexY, MISS_MARKER);
+		cout << "\nIt's a miss!\n";
+	}
 
 	return true;
 }
@@ -211,4 +260,14 @@ int GameProcessor::ConvertCharacterToIndex(char character)
 	{
 		throw new InvalidInputException;
 	}
+}
+
+bool GameProcessor::AllShipsSunk()
+{
+	if (battleships[0].Sunk() && battleships[1].Sunk() && battleships[2].Sunk())
+	{
+		return true;
+	}
+		
+	return false;
 }

@@ -13,7 +13,9 @@ Battleship::Battleship()
 }
 
 Battleship::~Battleship()
-{}
+{
+	delete[] positionsHit;
+}
 
 //Construct a battleship with a position
 Battleship::Battleship(list<string> position)
@@ -34,6 +36,32 @@ void Battleship::Init(list<string> position)
 	sunk = false;
 	health = position.size();
 	this->position = position;
+	positionsHit = new int[position.size()];
+
+	for (int i = 0; i < position.size(); i++)
+	{
+		positionsHit[i] = 0;
+	}
+
+}
+
+list<string> Battleship::Position()
+{
+	return position;
+}
+
+void Battleship::TakeDamageOn(int positionIndex)
+{
+	if (positionsHit[positionIndex] != 1)
+	{
+		positionsHit[positionIndex] = 1;
+		health--;
+
+		if (health == 0)
+		{
+			sunk = true;
+		}
+	}
 }
 
 // Accessor method for sunk

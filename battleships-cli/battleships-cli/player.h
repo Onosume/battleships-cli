@@ -14,4 +14,7 @@ public:
 	Player(int cannonballs);
 	void Init(int cannonballs);
 	int CannonballCount();
+	void TakeShot();
+	void AddToScore(int points);
+	int Score();
 };
