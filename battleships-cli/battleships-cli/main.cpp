@@ -14,6 +14,21 @@ void main()
 
 	gameProcessor->WriteIntro();
 
+	// Game Loop
+	while (!gameProcessor->AllShipsSunk())
+	{
+		gameProcessor->DisplayCurrentGame();
+
+		bool validInput = false;
+
+		while (!validInput)
+		{
+			gameProcessor->TakePlayerInput();
+			validInput = gameProcessor->Shoot();
+		}
+
+	}
+
 	char exitChar;
 	cout << "That's the end of the game. Press any key and enter to exit.    ";
 	cin >> exitChar;

@@ -49,47 +49,130 @@ list<string> GameProcessor::GeneratePosition(int battleshipSize)
 {
 	list<string> cells;
 	string* usedPositions = new string[battleshipSize];
+	
+	string cell = "";
+	int min, max;
 	bool positionSelected = false;
 
-	for (int i = 0; i < battleshipSize; i++)
+	// Generate a random starting point
+	// Generate a rand 65 - 74
+	min = 65;
+	max = 74;
+	srand((unsigned)time(0));
+	char randChar = min + (rand() % (int)(max - min + 1));
+
+	string startColumn;
+
+	// Generate a rand number 1 - 10 as an ASCII character
+	min = 48;
+	max = 57;
+	srand((unsigned)time(0));
+	char randNum = min + (rand() % (int)(max - min + 1));
+
+	if (randNum == '0')
 	{
-		string cell = "";
+		// If we get 0 convert to 10
+		cell += randChar;
+		cell += "10";
 
-		while (!positionSelected)
+		startColumn += "10";
+	}
+	else
+	{
+		cell += randChar;
+		cell += randNum;
+
+		startColumn += randNum;
+	}
+
+	cells.push_back(cell);
+	usedPositions[0] = cell;
+
+	//Choose whether to go down, left, right or up
+
+	char direction;
+
+	char downCell = randChar + battleshipSize;
+	char upCell = randChar - battleshipSize;
+	char leftCell;
+	char rightCell;
+
+	if (randNum == '0')
+	{
+		leftCell = ('9' + 1) - battleshipSize;
+		rightCell = ('9' + 1) + battleshipSize;
+	}
+	else
+	{
+		leftCell = randNum - battleshipSize;
+		rightCell = randNum + battleshipSize;
+	}
+
+	if (downCell <= 'J')
+	{
+		direction = 'd';
+	}
+	else if (leftCell >= '1')
+	{
+		direction = 'l';
+	}
+	else if (rightCell <= ('9' + 1))
+	{
+		direction = 'r';
+	}
+	else if (upCell >= 'A')
+	{
+		direction = 'u';
+	}
+
+	for (int cellCount = 1; cellCount < battleshipSize; cellCount++)
+	{
+		string nextCell = "";
+
+		if (direction == 'd')
 		{
-			// Generate a rand 65 - 74
-			srand((unsigned)time(0));
-			char randChar = (rand() % 74) + 65;
+			char nextRow = randChar + cellCount;
+			nextCell += nextRow;
+			nextCell += startColumn;
+		}
+		else if (direction == 'l')
+		{
+			char nextColumn;
 
-			// Generate a rand 1 - 10
-			srand((unsigned)time(0));
-			char randNum = (rand() % 39) + 30;
-
-			if (randNum == 30)
+			if (randNum == '0')
 			{
-				// If we get ASCII 30 (0) convert to 10
-				cell = randChar + "10";
+				nextColumn = ('9' + 1) - cellCount;
 			}
 			else
 			{
-				cell = randChar + randNum;
+				nextColumn = randNum - cellCount;
 			}
-
-			positionSelected = true;
-
-			// Can't select the same positon more than once per battleship
-			for (int j = 0; j < battleshipSize; j++)
+				
+			nextCell += randChar;
+			nextCell += nextColumn;
+		}
+		else if (direction == 'r')
+		{
+			char nextColumn = randNum + cellCount;
+			nextCell += randChar;
+			if (nextColumn == ('9' + 1))
 			{
-				if (cell == usedPositions[j])
-				{
-					positionSelected = false;
-					break;
-				}
+				nextCell += "10";
+			}
+			else
+			{
+				nextCell += nextColumn;
 			}
 		}
+		else if (direction == 'u')
+		{
+			char nextRow = randChar - cellCount;
+			nextCell += nextRow;
+			nextCell += startColumn;
+		}
 
-		cells.push_back(cell);
-		usedPositions[i] = cell;
+		cells.push_back(nextCell);
+		usedPositions[cellCount] = nextCell;
 	}
 
 	delete[] usedPositions;
