@@ -27,6 +27,7 @@ void main()
 			validInput = gameProcessor->Shoot();
 		}
 
+		gameProcessor->AllShipsSunk();
 	}
 
 	char exitChar;

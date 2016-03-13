@@ -4,6 +4,7 @@
 // Implementation of the battleship class
 
 #include "battleship.h";
+#include <iostream>
 
 // Construct a battleship with no position, but alive to be set later.
 Battleship::Battleship()
@@ -14,7 +15,7 @@ Battleship::Battleship()
 
 Battleship::~Battleship()
 {
-	delete[] positionsHit;
+
 }
 
 //Construct a battleship with a position
@@ -36,9 +37,8 @@ void Battleship::Init(list<string> position)
 	sunk = false;
 	health = position.size();
 	this->position = position;
-	positionsHit = new int[position.size()];
 
-	for (int i = 0; i < position.size(); i++)
+	for (int i = 0; i < MAX_BATTLESHIP_LENGTH; i++)
 	{
 		positionsHit[i] = 0;
 	}
@@ -60,6 +60,7 @@ void Battleship::TakeDamageOn(int positionIndex)
 		if (health == 0)
 		{
 			sunk = true;
+			cout << "\nYou sunk a ship!\n";
 		}
 	}
 }

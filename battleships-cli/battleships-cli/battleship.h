@@ -10,13 +10,15 @@
 
 using namespace std;
 
+const int MAX_BATTLESHIP_LENGTH = 5;
+
 class Battleship
 {
 private:
 	bool sunk;
 	list<string> position;
 	int health;
-	int* positionsHit;
+	int positionsHit[MAX_BATTLESHIP_LENGTH];
 public:
 	Battleship();
 	Battleship(list<string> position);

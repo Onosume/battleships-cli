@@ -222,7 +222,7 @@ bool GameProcessor::Shoot()
 
 	try
 	{
-		positionIndexX = ConvertCharacterToIndex(coordinateInput[0]);
+		positionIndexX = ConvertCharacterToIndex(coordinateInput[0], validAction);
 
 		if (coordinateInput[1] == '1' && coordinateInput[2] == '0')
 		{
@@ -230,7 +230,7 @@ bool GameProcessor::Shoot()
 		}
 		else
 		{
-			positionIndexY = ConvertCharacterToIndex(coordinateInput[1]);
+			positionIndexY = ConvertCharacterToIndex(coordinateInput[1], validAction);
 		}
 	}
 	catch (const std::exception& ex)
@@ -241,6 +241,7 @@ bool GameProcessor::Shoot()
 
 	if (!validAction)
 	{
+		cout << "Invalid input." << endl;
 		return false;
 	}
 
@@ -305,7 +306,7 @@ bool GameProcessor::Shoot()
 
 
 
-int GameProcessor::ConvertCharacterToIndex(char character)
+int GameProcessor::ConvertCharacterToIndex(char character, bool &validAction)
 {
 	if (character == 'A' || character == 'a' || character == '1')
 	{
@@ -349,7 +350,10 @@ int GameProcessor::ConvertCharacterToIndex(char character)
 	}
 	else
 	{
-		throw new InvalidInputException;
+		//throw new InvalidInputException;
+		//throw new exception;
+		validAction = false;
+		return -1;
 	}
 }
 
