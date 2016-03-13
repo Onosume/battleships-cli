@@ -28,6 +28,7 @@ GameProcessor::~GameProcessor()
 void GameProcessor::CreateGame()
 {
 	CreatePlayer();
+	CreateBattleships();
 }
 
 void GameProcessor::CreatePlayer()
